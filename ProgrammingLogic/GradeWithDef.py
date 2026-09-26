@@ -17,4 +17,3 @@ try:
     print(result)
 except ValueError:
     print("That's not a grade!")
-
