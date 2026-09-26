@@ -1,7 +1,5 @@
 try:
 
-    #def check_the_learner_grade(grade_number):
-
     grade = float(input("Please, enter your grade: "))
 
     if (0 > grade) or (grade > 10):
@@ -10,7 +8,7 @@ try:
         print("Excellent job!")
     elif 7 <= grade:
         print("Good job!")
-    elif 5 <= grade:
+    elif 5 <= grade <= 6.99:
         print("You got it, but almost!")
     elif 5 > grade:
         print("You did FAIL!")
