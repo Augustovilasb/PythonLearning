@@ -21,7 +21,7 @@ while order != "leave":
             count += 1
             items.append(order)
 
-print("U have ",count,"items.")
+print("Thanks for buying ",count,"with us.")
 
 counting = 0
 for item in items:
