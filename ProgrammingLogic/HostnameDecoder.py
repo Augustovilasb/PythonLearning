@@ -1,46 +1,88 @@
-# Desafio: Hostname Decoder
-#
-# O usuario digita um hostname no formato site-rackNN-srvNN
-# Exemplo: dub-rack12-srv07
-#
-# Regra: tente sem abrir os outros exercicios. Uma etapa por vez: faz, roda, confere.
-#
-# ETAPAS
-# 1. Entrada: peca o hostname, passe para minusculas e mostre
-#    o tamanho, o primeiro e o ultimo caractere.
-# 2. Quebrar: separe pelo "-". Se nao tiver exatamente 3 partes,
-#    mostre "Invalid hostname!" e nao faca mais nada.
-# 3. Validar: se alguma parte estiver vazia, mostre
-#    "Invalid hostname! Empty part!". Use um for com bandeira.
-# 4. Extrair (so se for valido):
-#    - o site, em maiusculas
-#    - o numero do rack, como numero (2 ultimos caracteres da segunda parte)
-#    - o numero do servidor, como numero (2 ultimos caracteres da terceira parte)
-# 5. Inverter e contar:
-#    - o hostname invertido, feito com laco
-#    - um "codigo": o invertido sem os tracos
-#    - quantas vogais o hostname tem
-# 6. Relatorio: mostre tudo com f-string.
-#
-# TESTE PRINCIPAL - digitando dub-rack12-srv07 tem que sair:
-#
-#   Hostname: dub-rack12-srv07
-#   Length: 16
-#   First: d | Last: 7
-#   Site: DUB
-#   Rack: 12
-#   Server: 7
-#   Reversed: 70vrs-21kcar-bud
-#   Code: 70vrs21kcarbud
-#   Vowels: 2
-#
-# TESTES DE ERRO
-#   dub-rack12          -> Invalid hostname!
-#   dub-rack12-srv07-x  -> Invalid hostname!
-#   dub--srv07          -> Invalid hostname! Empty part!
-#   DUB-RACK12-SRV07    -> o mesmo relatorio do teste principal
-#
-# EXTRA NIVEL CHEFE
-#   Aceite varios hostnames separados por virgula e mostre o relatorio de cada um:
-#   dub-rack12-srv07,lon-rack03-srv21
+# hostname = DUB-RACK12-SRV07
 
+print("1. Lowercase")
+#hostname = input("Enter the hostname: ").lower()
+hostname = "DUB-RACK12-SRV07".lower()
+print("The hostname on lower case:",hostname)
+print("")
+
+print("2. Hostname length")
+print("The hostname has", len(hostname),"caracteres.")
+print("The first one is:", hostname[0])
+print("The last one is:", hostname[-1])
+print("")
+
+print("3. Broking the hostname in parts")
+print("The host name in parts:")
+parts = hostname.split("-")
+print("Those are the hostname parts:",parts)
+print("And we have",len(parts),"parts")
+print("")
+
+print("4. Checking if the hostname has 3 parts")
+if len(parts) != 3:
+    print("Hostname invalid!")
+    print("It must have 3 parts!")
+else:
+    print("The hostname has the 3 parts needed!")
+    print("Valid hostname!")
+print("")
+
+print("5. Checking if all the parts on  the hostname are valid")
+valid = True
+for part in parts:
+      if part == "":
+          valid = False
+          break
+if valid:
+    print("All the parts are filled!")
+    print("Valid hostname!")
+else:
+    print("Invalid hostname!")
+    print("The hostname can't have any empty part!")
+print("")
+
+print("6. Find the rack number, server number and the site:")
+if len(parts) != 3:
+    print("Invalid hostname!")
+else:
+    part0 = parts[0]
+    part1 = parts[1]
+    part2 = parts[2]
+    print("Site:", part0.upper())
+    print("Rack number:", int(part1[-2:]))
+    print("Server number:", int(part2[-2:]))
+print("")
+
+print("7. Invert the hostname")
+print("Standard hostname:", hostname)
+inverted_hostname = ""
+for letters in hostname:
+    inverted_hostname = letters + inverted_hostname
+print("Inverted hostname:",inverted_hostname)
+print("")
+
+print("8. Inverted hostname with out the '-'")
+print(inverted_hostname)
+print(inverted_hostname.replace("-",""))
+print("")
+
+print("9. How many vowels hostname has:")
+count = 0
+vowels = ""
+for letters in hostname:
+    if letters in {"a","e","i","o","u"}:
+            count += 1
+            vowels = vowels + letters
+print("We have:",count,"in the hostname.")
+print("Those are:",vowels)
+print("")
+
+print("10. Hostname statement:")
+if len(parts) != 3:
+    print("Invalid hostname!")
+else:
+    part0 = parts[0]
+    part1 = parts[1]
+    part2 = parts[2]
+    print(f"Hostname: {hostname}\nLength: {len(hostname)}\nFirst: {hostname[0]} | Last: {hostname[-1]}\nSite: {part0.upper()}\nRack: {int(part1[-2:])}\nServer: {int(part2[-2:])}\nReversed: {inverted_hostname}\nCode: {inverted_hostname.replace("-","")}\nVowels: {count}")
