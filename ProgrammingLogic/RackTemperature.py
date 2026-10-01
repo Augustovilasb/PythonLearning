@@ -1,6 +1,3 @@
-from operator import index
-from traceback import print_tb
-from xml.dom.minidom import ProcessingInstruction
 
 temps = [45, 52, 78, 60, 81, 49]
 limit = 75
@@ -37,6 +34,7 @@ print("")
 
 high_temp = 0
 each_server = 0
+server_higher = 0
 for temp in temps:
     each_server += 1
     if temp > high_temp:
