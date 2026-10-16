@@ -26,8 +26,11 @@ bus_cost = (bus_price * quantity_busses) / learners
 print("The price the trip per learner is:", round(bus_cost, 2))
 
 hours_on_trip = minutes_on_trip // 60
-print(f"Trip duration {hours_on_trip}:{minutes_on_trip}")
+minutes_left = minutes_on_trip % 60
+print(f"Trip duration {hours_on_trip}:{minutes_left:02}")
 
-hour_arriving = hour_leaving + hours_on_trip
-minutes_arriving = minutes_leaving + minutes_on_trip
-print(f"Estimate time arriving: {hour_arriving}:{minutes_arriving}")
+hours_leaving_in_minutes = (hour_leaving * 60) + minutes_leaving
+total_trip_duration = hours_leaving_in_minutes + minutes_on_trip
+hours_arriving = (total_trip_duration // 60) % 24
+minutes_arriving = total_trip_duration % 60
+print(f"We are expecting arriving at {hours_arriving}:{minutes_arriving:02}")
