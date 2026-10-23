@@ -23,7 +23,7 @@ while play_again != "2":
     first_rnd_player = random.randint(1, 20)
     LIMIT = 21
 
-    print("The computer has his number!!")
+    print("The computer has its number!!")
     print(f"Your first number: {first_rnd_player}\n")
     print("Take your time and think on that...")
 
@@ -53,18 +53,18 @@ while play_again != "2":
         # If the total of both cards is higher than the LIMIT, he loses instantly
         if total > LIMIT:
             print("Oh! It was a mistake!")
-            print(f"Blasting yourself! Your number is {total}")
+            print(f"You busted! Your number is {total}")
             print("LOSER!")
 
-        # Elif the total of both cards is 21 or under the LIMIT, the player still is in the game
-        elif total <= LIMIT:
+        # ELSE, if both cards add up to 21 or under, the player is still in the game
+        else:
             # Compare the total of player cards with the computer card
             if total > rnd_computer:
                 print("You WON!!!")
                 print(f"The value {total} beats the value {rnd_computer} from the computer!!!")
             # Compare the total of player cards with the computer card
             elif total < rnd_computer:
-                print("You LOSE!!!")
+                print("You LOST!!!")
                 print(f"The value {rnd_computer} from the computer beats your number {total}!!!")
             else:
                 print("IT'S A DRAW!!!")
@@ -81,7 +81,7 @@ while play_again != "2":
             print("You WON!!!")
             print(f"The value {first_rnd_player} beats the value {rnd_computer} from the computer!!!")
         elif first_rnd_player < rnd_computer: # Lower than the computer: player loses
-            print("You LOSE!!!")
+            print("You LOST!!!")
             print(f"The value {rnd_computer} from the computer beats your number {first_rnd_player}!!!")
         else:  # Same number: Extra, It's a draw
             print("IT'S A DRAW!!!")
